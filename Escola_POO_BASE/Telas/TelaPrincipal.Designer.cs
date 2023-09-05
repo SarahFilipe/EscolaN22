@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LblBemVindo = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SspRodape = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -44,27 +44,18 @@
             this.TsiCadastro = new System.Windows.Forms.ToolStripMenuItem();
             this.TslCadastroAluno = new System.Windows.Forms.ToolStripMenuItem();
             this.TslCadastroProfessor = new System.Windows.Forms.ToolStripMenuItem();
+            this.TmrRelogio = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SspRodape.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // LblBemVindo
-            // 
-            this.LblBemVindo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblBemVindo.Location = new System.Drawing.Point(6, 16);
-            this.LblBemVindo.Name = "LblBemVindo";
-            this.LblBemVindo.Size = new System.Drawing.Size(484, 198);
-            this.LblBemVindo.TabIndex = 0;
-            this.LblBemVindo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.SspRodape);
-            this.groupBox1.Controls.Add(this.LblBemVindo);
-            this.groupBox1.Location = new System.Drawing.Point(12, 56);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(538, 280);
+            this.groupBox1.Size = new System.Drawing.Size(882, 312);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Professor";
@@ -79,9 +70,9 @@
             this.nadave,
             this.TslPerfil,
             this.TslDataHora});
-            this.SspRodape.Location = new System.Drawing.Point(3, 255);
+            this.SspRodape.Location = new System.Drawing.Point(3, 287);
             this.SspRodape.Name = "SspRodape";
-            this.SspRodape.Size = new System.Drawing.Size(532, 22);
+            this.SspRodape.Size = new System.Drawing.Size(876, 22);
             this.SspRodape.TabIndex = 1;
             this.SspRodape.Text = "statusStrip1";
             // 
@@ -142,7 +133,7 @@
             this.TsiCadastro});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(562, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(906, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -173,24 +164,29 @@
             // TslCadastroAluno
             // 
             this.TslCadastroAluno.Name = "TslCadastroAluno";
-            this.TslCadastroAluno.Size = new System.Drawing.Size(180, 22);
+            this.TslCadastroAluno.Size = new System.Drawing.Size(123, 22);
             this.TslCadastroAluno.Text = "Aluno";
             this.TslCadastroAluno.Click += new System.EventHandler(this.TslCadastroAluno_Click);
             // 
             // TslCadastroProfessor
             // 
             this.TslCadastroProfessor.Name = "TslCadastroProfessor";
-            this.TslCadastroProfessor.Size = new System.Drawing.Size(180, 22);
+            this.TslCadastroProfessor.Size = new System.Drawing.Size(123, 22);
             this.TslCadastroProfessor.Text = "Professor";
             this.TslCadastroProfessor.Click += new System.EventHandler(this.TslCadastroProfessor_Click);
+            // 
+            // TmrRelogio
+            // 
+            this.TmrRelogio.Tick += new System.EventHandler(this.TmrRelogio_Tick);
             // 
             // TelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 348);
+            this.ClientSize = new System.Drawing.Size(906, 382);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TelaPrincipal";
             this.Text = "TelaPrincipal";
@@ -207,8 +203,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label LblBemVindo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.StatusStrip SspRodape;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -224,5 +218,6 @@
         private System.Windows.Forms.ToolStripMenuItem TsiCadastro;
         private System.Windows.Forms.ToolStripMenuItem TslCadastroAluno;
         private System.Windows.Forms.ToolStripMenuItem TslCadastroProfessor;
+        private System.Windows.Forms.Timer TmrRelogio;
     }
 }

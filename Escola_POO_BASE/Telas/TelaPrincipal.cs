@@ -48,7 +48,8 @@ namespace Escola_POO_BASE.Telas
             TslNomeUserLogado.Text = _userLogado.Nome;
             TslEmailUserLogado.Text = _userLogado.Email;
             TslDataHora.Text = DateTime.Now.ToString();
-
+            TmrRelogio.Interval = 1000;
+            TmrRelogio.Enabled = true;
         }
 
         private void TslAlterarSenha_Click(object sender, EventArgs e)
@@ -72,6 +73,11 @@ namespace Escola_POO_BASE.Telas
 
             TelaCadastroProfessor telaCadastro = new TelaCadastroProfessor(_userLogado);
             telaCadastro.ShowDialog();
+        }
+
+        private void TmrRelogio_Tick(object sender, EventArgs e)
+        {
+            TslDataHora.Text = DateTime.Now.ToString() ;
         }
     }
 }
