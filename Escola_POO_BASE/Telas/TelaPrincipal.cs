@@ -33,7 +33,7 @@ namespace Escola_POO_BASE.Telas
             if (_userLogado is Aluno)
             {            
                 TslPerfil.Text = "Aluno";
-                groupBox1.Text = "Aluno";
+                
                 TsiCadastro.Visible = false;
             }
             else
@@ -41,10 +41,9 @@ namespace Escola_POO_BASE.Telas
                 Professor professor = (Professor)_userLogado;
 
                 TslPerfil.Text = "Professor";
-                groupBox1.Text = "Professor";
+               
             }
             
-            LblBemVindo.Text = $"Bem Vindo {_userLogado.Nome}";
             TslNomeUserLogado.Text = _userLogado.Nome;
             TslEmailUserLogado.Text = _userLogado.Email;
             TslDataHora.Text = DateTime.Now.ToString();
@@ -79,6 +78,8 @@ namespace Escola_POO_BASE.Telas
         {
             TslDataHora.Text = DateTime.Now.ToString() ;
         }
+
+      
     }
 }
 
