@@ -36,7 +36,7 @@ namespace Escola_POO_BASE.Classes
 
         public void Cadastrar(List<Professor> professores)
         {
-            string query = ($"insert into Professor VALUES ('{Nome}', '{DtNascimento}', '{CPF}', '{Email}', '{Senha}', '{NivelAcesso}' 1)");
+            string query = ($"insert into Professor VALUES ('{Nome}', '{DtNascimento}', '{CPF}', '{Email}', '{Senha}', '{NivelAcesso}', 1)");
             query += "; SELECT SCOPE_IDENTITY()";
             Conexao cn = new Conexao(query);
 
@@ -56,10 +56,10 @@ namespace Escola_POO_BASE.Classes
                 cn.FecharConexao();
             }
         }
-        public void Alterar(List<Aluno> alunos)
+        public void Alterar(List<Professor> professores)
         {
 
-            string query = ($"update Professor set Nome = '{Nome}', Email = '{Email}', DtNascimento = '{DtNascimento}', Cpf = '{CPF}', NivelAcesso = '{NivelAcesso}' where Id = {Id} ");
+            string query = ($"update Professor set Nome = '{Nome}', Email = '{Email}', DtNascimento = '{DtNascimento}', Cpf = '{CPF}', NivelAcesso = '{NivelAcesso}'  where Id = {Id} ");
             Conexao cn = new Conexao(query);
 
             try
@@ -76,9 +76,9 @@ namespace Escola_POO_BASE.Classes
 
         }
 
-        public void Deletar(List<Aluno> alunos)
+        public void Deletar(List<Professor> professores)
         {
-            string query = ($"update Aluno set Ativo = '{0}' where Id = {Id} ");
+            string query = ($"update Professor set Ativo = '{0}' where Id = {Id} ");
             Conexao cn = new Conexao(query);
 
             try
