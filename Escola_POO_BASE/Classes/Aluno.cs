@@ -95,10 +95,10 @@ namespace Escola_POO_BASE.Classes
             switch (indexCbbBuscar)
             {
                 case 0:
-                    return alunos.Where(a => a.Nome.ToUpper().Contains(texto.ToUpper())).ToList();
+                    return alunos.Where(a => a.Nome.ToUpper().Normalize(NormalizationForm.FormD).Contains(texto.ToUpper().Normalize(NormalizationForm.FormD))).ToList();
 
                 case 1:
-                    return alunos.Where(a => a.Email.ToUpper().Contains(texto.ToUpper())).ToList();
+                    return alunos.Where(a => a.Email.ToUpper().Normalize(NormalizationForm.FormD).Contains(texto.ToUpper().Normalize(NormalizationForm.FormD))).ToList();
 
                 case 2:
                     return alunos.Where(a => a.Id == Convert.ToInt32(texto)).ToList();

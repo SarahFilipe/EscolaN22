@@ -71,7 +71,10 @@ namespace Escola_POO_BASE.Telas
             Professor professor = (Professor)_userLogado;
 
             TelaCadastroProfessor telaCadastro = new TelaCadastroProfessor(_userLogado);
-            telaCadastro.ShowDialog();
+
+            telaCadastro.MdiParent = this;
+            telaCadastro.Show();              
+            
         }
 
         private void TmrRelogio_Tick(object sender, EventArgs e)

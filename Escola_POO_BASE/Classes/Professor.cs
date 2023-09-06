@@ -93,7 +93,26 @@ namespace Escola_POO_BASE.Classes
                 throw;
             }
         }
+        public static List<Professor> Buscar(List<Professor> professores , int indexCbbBuscar, string texto)
+        {
+            switch (indexCbbBuscar)
+            {
+                case 0:
+                    return professores.Where(a => a.Nome.ToUpper().Contains(texto.ToUpper())).ToList();
 
+                case 1:
+                    return professores.Where(a => a.Email.ToUpper().Contains(texto.ToUpper())).ToList();
+
+                case 2:
+                    return professores.Where(a => a.Id == Convert.ToInt32(texto)).ToList();
+
+                default:
+                    return professores;
+
+            }
+        }
         #endregion
+
+
     }
 }

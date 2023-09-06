@@ -98,6 +98,8 @@ namespace Escola_POO_BASE.Telas
             DgvUsuarios.ClearSelection();
             BtnCadastrar.Enabled = true;
             BtnAlterar.Enabled = false;
+            CbbBuscar.SelectedIndex = 0;
+            Txtbuscar.Focus();
 
         }
 
