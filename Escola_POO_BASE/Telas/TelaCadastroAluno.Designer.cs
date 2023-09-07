@@ -51,6 +51,7 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.CbbBuscar = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.BtnReativar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -92,7 +93,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label4.Location = new System.Drawing.Point(32, 203);
+            this.label4.Location = new System.Drawing.Point(32, 217);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 20);
             this.label4.TabIndex = 3;
@@ -112,7 +113,7 @@
             // 
             // TxtNome
             // 
-            this.TxtNome.Location = new System.Drawing.Point(93, 203);
+            this.TxtNome.Location = new System.Drawing.Point(93, 217);
             this.TxtNome.Name = "TxtNome";
             this.TxtNome.Size = new System.Drawing.Size(162, 20);
             this.TxtNome.TabIndex = 5;
@@ -122,7 +123,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label5.Location = new System.Drawing.Point(284, 203);
+            this.label5.Location = new System.Drawing.Point(284, 217);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 20);
             this.label5.TabIndex = 6;
@@ -131,7 +132,7 @@
             // TxtEmail
             // 
             this.TxtEmail.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtEmail.Location = new System.Drawing.Point(342, 203);
+            this.TxtEmail.Location = new System.Drawing.Point(342, 217);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(162, 20);
             this.TxtEmail.TabIndex = 7;
@@ -141,7 +142,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label6.Location = new System.Drawing.Point(36, 273);
+            this.label6.Location = new System.Drawing.Point(36, 296);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(156, 20);
             this.label6.TabIndex = 8;
@@ -152,7 +153,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label7.Location = new System.Drawing.Point(54, 310);
+            this.label7.Location = new System.Drawing.Point(54, 344);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(138, 20);
             this.label7.TabIndex = 9;
@@ -162,7 +163,7 @@
             // 
             this.DTPNascimento.CalendarForeColor = System.Drawing.SystemColors.ControlLight;
             this.DTPNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DTPNascimento.Location = new System.Drawing.Point(198, 271);
+            this.DTPNascimento.Location = new System.Drawing.Point(198, 294);
             this.DTPNascimento.Name = "DTPNascimento";
             this.DTPNascimento.Size = new System.Drawing.Size(263, 22);
             this.DTPNascimento.TabIndex = 10;
@@ -170,7 +171,7 @@
             // DTPMatricula
             // 
             this.DTPMatricula.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DTPMatricula.Location = new System.Drawing.Point(198, 310);
+            this.DTPMatricula.Location = new System.Drawing.Point(198, 342);
             this.DTPMatricula.Name = "DTPMatricula";
             this.DTPMatricula.Size = new System.Drawing.Size(263, 22);
             this.DTPMatricula.TabIndex = 11;
@@ -182,9 +183,9 @@
             this.BtnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCadastrar.ForeColor = System.Drawing.Color.DarkBlue;
-            this.BtnCadastrar.Location = new System.Drawing.Point(393, 373);
+            this.BtnCadastrar.Location = new System.Drawing.Point(266, 403);
             this.BtnCadastrar.Name = "BtnCadastrar";
-            this.BtnCadastrar.Size = new System.Drawing.Size(111, 34);
+            this.BtnCadastrar.Size = new System.Drawing.Size(120, 34);
             this.BtnCadastrar.TabIndex = 12;
             this.BtnCadastrar.Text = "Cadastrar";
             this.BtnCadastrar.UseVisualStyleBackColor = false;
@@ -196,7 +197,7 @@
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancelar.ForeColor = System.Drawing.Color.DarkBlue;
-            this.BtnCancelar.Location = new System.Drawing.Point(14, 377);
+            this.BtnCancelar.Location = new System.Drawing.Point(14, 496);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(94, 28);
             this.BtnCancelar.TabIndex = 13;
@@ -216,7 +217,7 @@
             this.DgvUsuarios.ReadOnly = true;
             this.DgvUsuarios.RowHeadersVisible = false;
             this.DgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvUsuarios.Size = new System.Drawing.Size(619, 351);
+            this.DgvUsuarios.Size = new System.Drawing.Size(619, 475);
             this.DgvUsuarios.TabIndex = 15;
             this.DgvUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUsuarios_CellDoubleClick);
             this.DgvUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgvUsuarios_CellFormatting);
@@ -228,7 +229,7 @@
             this.BtnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNovo.ForeColor = System.Drawing.Color.DarkBlue;
-            this.BtnNovo.Location = new System.Drawing.Point(161, 377);
+            this.BtnNovo.Location = new System.Drawing.Point(161, 496);
             this.BtnNovo.Name = "BtnNovo";
             this.BtnNovo.Size = new System.Drawing.Size(94, 28);
             this.BtnNovo.TabIndex = 16;
@@ -243,7 +244,7 @@
             this.BtnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAlterar.ForeColor = System.Drawing.Color.DarkBlue;
-            this.BtnAlterar.Location = new System.Drawing.Point(270, 377);
+            this.BtnAlterar.Location = new System.Drawing.Point(279, 496);
             this.BtnAlterar.Name = "BtnAlterar";
             this.BtnAlterar.Size = new System.Drawing.Size(94, 28);
             this.BtnAlterar.TabIndex = 17;
@@ -320,12 +321,28 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Buscar por:";
             // 
+            // BtnReativar
+            // 
+            this.BtnReativar.BackColor = System.Drawing.Color.Silver;
+            this.BtnReativar.Enabled = false;
+            this.BtnReativar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnReativar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReativar.ForeColor = System.Drawing.Color.DarkBlue;
+            this.BtnReativar.Location = new System.Drawing.Point(400, 496);
+            this.BtnReativar.Name = "BtnReativar";
+            this.BtnReativar.Size = new System.Drawing.Size(94, 28);
+            this.BtnReativar.TabIndex = 32;
+            this.BtnReativar.Text = "Reativar";
+            this.BtnReativar.UseVisualStyleBackColor = false;
+            this.BtnReativar.Click += new System.EventHandler(this.BtnReativar_Click);
+            // 
             // TelaCadastroAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1159, 434);
+            this.ClientSize = new System.Drawing.Size(1160, 558);
+            this.Controls.Add(this.BtnReativar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BtnAlterar);
             this.Controls.Add(this.BtnNovo);
@@ -383,5 +400,6 @@
         private System.Windows.Forms.ComboBox CbbBuscar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.Button BtnReativar;
     }
 }

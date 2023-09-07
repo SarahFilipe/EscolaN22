@@ -72,18 +72,21 @@ namespace Escola_POO_BASE.Telas
 
         private void CarregaDgvUsuarios(List<Aluno> alunos = null)
         {
-            DgvUsuarios.Rows.Clear();
+            DgvUsuarios.Rows.Clear();            
 
             foreach (Aluno aluno in alunos == null ? _alunos : alunos)
             {                
                 DgvUsuarios.Rows.Add(aluno.Id, aluno.Nome, aluno.DtNascimento.ToString("dd/MM/yyyy"), aluno.DtMatricula, aluno.Email, aluno.Ativo);
 
-                if (!aluno.Ativo)
+                if(_userLogado.NivelAcesso == 1)
                 {
-                    DgvUsuarios.Rows[DgvUsuarios.Rows.Count -1].DefaultCellStyle.BackColor = Color.LightCoral;
+                    if (!aluno.Ativo)
+                    {
+                        DgvUsuarios.Rows[DgvUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightCoral;
+                    }
                 }
             }
-
+           
         }
 
         private void LimparCampos()
@@ -98,7 +101,11 @@ namespace Escola_POO_BASE.Telas
             DgvUsuarios.ClearSelection();
             BtnCadastrar.Enabled = true;
             BtnAlterar.Enabled = false;
-            CbbBuscar.SelectedIndex = 0;            
+            CbbBuscar.SelectedIndex = 0;               
+            if (_userLogado.NivelAcesso != 1)
+            {
+                BtnReativar.Visible = false;
+            }
 
         }
         
@@ -208,18 +215,22 @@ namespace Escola_POO_BASE.Telas
         {
             try
             {
-               DialogResult dr = MessageBox.Show($"Você deseja remover o {_alunoSelecionado.Nome}?"
+               if(_userLogado.NivelAcesso == 1)
+               {
+                    DialogResult dr = MessageBox.Show($"Você deseja remover o {_alunoSelecionado.Nome}?"
                                , "Remover Aluno"
                                , MessageBoxButtons.YesNo
-                               , MessageBoxIcon.Question); 
+                               , MessageBoxIcon.Question);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        _alunoSelecionado.Ativo = false;
+                        _alunoSelecionado.Deletar(_alunos);
+                        CarregaDgvUsuarios();
+                        LimparCampos();
+                    }
+               }
                 
-                if (dr == DialogResult.Yes)
-                {
-                    _alunoSelecionado.Ativo = false;
-                    _alunoSelecionado.Deletar(_alunos);
-                    CarregaDgvUsuarios(); 
-                    LimparCampos();
-                }
             }
             catch (Exception ex)
             {
@@ -258,6 +269,30 @@ namespace Escola_POO_BASE.Telas
         private void TelaCadastroAluno_Shown(object sender, EventArgs e)
         {
             TxtBuscar.Focus();
+        }
+
+        private void BtnReativar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dr = MessageBox.Show($"Você deseja reativar o {_alunoSelecionado.Nome}?"
+                                , "Reativar Aluno"
+                                , MessageBoxButtons.YesNo
+                                , MessageBoxIcon.Question);
+
+                if (dr == DialogResult.Yes)
+                {
+                    _alunoSelecionado.Ativo = true;
+                    _alunoSelecionado.Reativar(_alunos);
+                    CarregaDgvUsuarios();
+                    LimparCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

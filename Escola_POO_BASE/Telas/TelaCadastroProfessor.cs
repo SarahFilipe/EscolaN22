@@ -98,8 +98,7 @@ namespace Escola_POO_BASE.Telas
             DgvUsuarios.ClearSelection();
             BtnCadastrar.Enabled = true;
             BtnAlterar.Enabled = false;
-            CbbBuscar.SelectedIndex = 0;
-            Txtbuscar.Focus();
+            CbbBuscar.SelectedIndex = 0;            
 
         }
 
@@ -138,7 +137,7 @@ namespace Escola_POO_BASE.Telas
             Close();
         }
 
-        private void TelaCadastro_Load(object sender, EventArgs e)
+        private void TelaCadastroProfessor_Load(object sender, EventArgs e)
         {
 
             try
@@ -252,5 +251,16 @@ namespace Escola_POO_BASE.Telas
             CarregaDgvUsuarios(ListaProfessoresFiltrada);
         }
 
+        private void TelaCadastroProfessor_Shown(object sender, EventArgs e)
+        {
+            Txtbuscar.Focus();
+        }
+
+        private void Txtbuscar_TextChanged(object sender, EventArgs e)
+        {
+            BtnBuscar.PerformClick();
+        }
+
+       
     }
 }

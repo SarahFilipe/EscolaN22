@@ -88,7 +88,25 @@ namespace Escola_POO_BASE.Classes
 
                 throw;
             }
-        } 
+        }
+
+        public void Reativar(List<Aluno> alunos)
+        {
+            string query = ($"update Aluno set Ativo = '{1}' where Id = {Id} ");
+            Conexao cn = new Conexao(query);
+
+            try
+            {
+                cn.AbrirConexao();
+                cn.comando.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         public static List<Aluno> Buscar(List<Aluno> alunos, int indexCbbBuscar, string texto)
         {

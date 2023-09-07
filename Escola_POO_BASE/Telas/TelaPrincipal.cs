@@ -15,6 +15,7 @@ namespace Escola_POO_BASE.Telas
     {
 
         private Usuario _userLogado;        
+        private List<Aluno> _alunos;
 
         public TelaPrincipal()
         {
@@ -24,24 +25,21 @@ namespace Escola_POO_BASE.Telas
         public TelaPrincipal(Usuario usuario)
         {
             InitializeComponent();
-            _userLogado = usuario;          
-            
+            _userLogado = usuario;
+            _alunos = Usuario.BuscarUsuariosA().ConvertAll(u => (Aluno)u);                        
         }
 
         private void TelaPrincipal_Load(object sender, EventArgs e)
         {
             if (_userLogado is Aluno)
             {            
-                TslPerfil.Text = "Aluno";
-                
-                TsiCadastro.Visible = false;
+                TslPerfil.Text = "Aluno";                
+                TslCadastro.Visible = false;
             }
             else
             {
-                Professor professor = (Professor)_userLogado;
-
-                TslPerfil.Text = "Professor";
-               
+                Professor professor = (Professor)_userLogado;                
+                TslPerfil.Text = "Professor";               
             }
             
             TslNomeUserLogado.Text = _userLogado.Nome;
@@ -49,6 +47,11 @@ namespace Escola_POO_BASE.Telas
             TslDataHora.Text = DateTime.Now.ToString();
             TmrRelogio.Interval = 1000;
             TmrRelogio.Enabled = true;
+
+            LblAlunosAtivos.Text = _alunos.Where(aluno => aluno.Ativo == true).Count().ToString();
+            LblTotalAlunos.Text = _alunos.Count.ToString();
+            LblAlunosRemovidos.Text = _alunos.Where(aluno => aluno.Ativo == false).Count().ToString();
+
         }
 
         private void TslAlterarSenha_Click(object sender, EventArgs e)
@@ -62,8 +65,9 @@ namespace Escola_POO_BASE.Telas
             Professor professor = (Professor)_userLogado;
 
                 TelaCadastroAluno telaCadastro = new TelaCadastroAluno(_userLogado);
-                telaCadastro.ShowDialog();
-           
+                telaCadastro.MdiParent = this;
+                telaCadastro.Show();
+
         }
 
         private void TslCadastroProfessor_Click(object sender, EventArgs e)
@@ -73,16 +77,31 @@ namespace Escola_POO_BASE.Telas
             TelaCadastroProfessor telaCadastro = new TelaCadastroProfessor(_userLogado);
 
             telaCadastro.MdiParent = this;
-            telaCadastro.Show();              
+            telaCadastro.Show();  
+            
             
         }
 
         private void TmrRelogio_Tick(object sender, EventArgs e)
         {
             TslDataHora.Text = DateTime.Now.ToString() ;
+
+            try
+            {
+                _alunos = Usuario.BuscarUsuariosA().ConvertAll(u => (Aluno)u);
+
+                LblAlunosAtivos.Text = _alunos.Where(aluno => aluno.Ativo == true).Count().ToString();
+                LblTotalAlunos.Text = _alunos.Count.ToString();
+                LblAlunosRemovidos.Text = _alunos.Where(aluno => aluno.Ativo == false).Count().ToString();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
-      
     }
 }
 

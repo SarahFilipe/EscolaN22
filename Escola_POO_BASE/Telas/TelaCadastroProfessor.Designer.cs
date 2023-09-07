@@ -94,8 +94,11 @@
             this.DgvUsuarios.ReadOnly = true;
             this.DgvUsuarios.RowHeadersVisible = false;
             this.DgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvUsuarios.Size = new System.Drawing.Size(619, 351);
+            this.DgvUsuarios.Size = new System.Drawing.Size(620, 475);
             this.DgvUsuarios.TabIndex = 17;
+            this.DgvUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUsuarios_CellDoubleClick);
+            this.DgvUsuarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgvUsuarios_CellFormatting);
+            this.DgvUsuarios.SelectionChanged += new System.EventHandler(this.DgvUsuarios_SelectionChanged);
             // 
             // label2
             // 
@@ -228,6 +231,7 @@
             this.BtnBuscar.TabIndex = 4;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // Txtbuscar
             // 
@@ -236,6 +240,7 @@
             this.Txtbuscar.Name = "Txtbuscar";
             this.Txtbuscar.Size = new System.Drawing.Size(160, 24);
             this.Txtbuscar.TabIndex = 2;
+            this.Txtbuscar.TextChanged += new System.EventHandler(this.Txtbuscar_TextChanged);
             // 
             // CbbBuscar
             // 
@@ -275,6 +280,7 @@
             this.BtnCadastrar.TabIndex = 13;
             this.BtnCadastrar.Text = "Cadastrar";
             this.BtnCadastrar.UseVisualStyleBackColor = false;
+            this.BtnCadastrar.Click += new System.EventHandler(this.BtnCadastrar_Click);
             // 
             // BtnAlterar
             // 
@@ -289,6 +295,7 @@
             this.BtnAlterar.TabIndex = 31;
             this.BtnAlterar.Text = "Alterar";
             this.BtnAlterar.UseVisualStyleBackColor = false;
+            this.BtnAlterar.Click += new System.EventHandler(this.BtnAlterar_Click);
             // 
             // BtnNovo
             // 
@@ -302,6 +309,7 @@
             this.BtnNovo.TabIndex = 32;
             this.BtnNovo.Text = "Novo";
             this.BtnNovo.UseVisualStyleBackColor = false;
+            this.BtnNovo.Click += new System.EventHandler(this.BtnNovo_Click);
             // 
             // BtnCancelar
             // 
@@ -315,6 +323,7 @@
             this.BtnCancelar.TabIndex = 33;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = false;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // TxtNivelAcesso
             // 
@@ -340,7 +349,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1159, 434);
+            this.ClientSize = new System.Drawing.Size(1160, 558);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.TxtNivelAcesso);
             this.Controls.Add(this.BtnCancelar);
@@ -364,6 +373,8 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "TelaCadastroProfessor";
             this.Text = "TelaCadastroProfessor";
+            this.Load += new System.EventHandler(this.TelaCadastroProfessor_Load);
+            this.Shown += new System.EventHandler(this.TelaCadastroProfessor_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvUsuarios)).EndInit();
             this.groupBox1.ResumeLayout(false);
