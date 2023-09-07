@@ -93,15 +93,32 @@ namespace Escola_POO_BASE.Classes
                 throw;
             }
         }
+        public void Reativar(List<Professor> professores)
+        {
+            string query = ($"update Professor set Ativo = '{1}' where Id = {Id} ");
+            Conexao cn = new Conexao(query);
+
+            try
+            {
+                cn.AbrirConexao();
+                cn.comando.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public static List<Professor> Buscar(List<Professor> professores , int indexCbbBuscar, string texto)
         {
             switch (indexCbbBuscar)
             {
                 case 0:
-                    return professores.Where(a => a.Nome.ToUpper().Contains(texto.ToUpper())).ToList();
+                    return professores.Where(a => a.Nome.ToUpper().Normalize(NormalizationForm.FormD).Contains(texto.ToUpper().Normalize(NormalizationForm.FormD))).ToList();
 
                 case 1:
-                    return professores.Where(a => a.Email.ToUpper().Contains(texto.ToUpper())).ToList();
+                    return professores.Where(a => a.Email.ToUpper().Normalize(NormalizationForm.FormD).Contains(texto.ToUpper().Normalize(NormalizationForm.FormD))).ToList();
 
                 case 2:
                     return professores.Where(a => a.Id == Convert.ToInt32(texto)).ToList();

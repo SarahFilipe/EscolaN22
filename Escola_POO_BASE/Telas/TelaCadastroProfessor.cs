@@ -73,13 +73,28 @@ namespace Escola_POO_BASE.Telas
         {
             DgvUsuarios.Rows.Clear();
 
-            foreach (Professor professor in professores == null ? _professores : professores)
+            if (_userLogado.NivelAcesso != 1)
             {
-                DgvUsuarios.Rows.Add(professor.Id, professor.Nome, professor.DtNascimento.ToString("dd/MM/yyyy"), professor.CPF, professor.Email, professor.NivelAcesso, professor.Ativo);
-
-                if (!professor.Ativo)
+                foreach (Professor professor in professores == null ? _professores : professores)
                 {
-                    DgvUsuarios.Rows[DgvUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightCoral;
+                    if (professor.Ativo == true)
+                    {
+                        DgvUsuarios.Rows.Add(professor.Id, professor.Nome, professor.DtNascimento.ToString("dd/MM/yyyy"), professor.CPF, professor.Email, professor.NivelAcesso);
+                        BtnReativar.Visible = false;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Professor professor in professores == null ? _professores : professores)
+                {
+                    DgvUsuarios.Rows.Add(professor.Id, professor.Nome, professor.DtNascimento.ToString("dd/MM/yyyy"), professor.CPF, professor.Email, professor.NivelAcesso, professor .Ativo);
+
+                    if (!professor.Ativo)
+                    {
+                        DgvUsuarios.Rows[DgvUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightCoral;
+                    }
+
                 }
             }
 
@@ -98,7 +113,15 @@ namespace Escola_POO_BASE.Telas
             DgvUsuarios.ClearSelection();
             BtnCadastrar.Enabled = true;
             BtnAlterar.Enabled = false;
-            CbbBuscar.SelectedIndex = 0;            
+            CbbBuscar.SelectedIndex = 0;
+            BtnAlterar.BackColor = Color.Silver;
+            BtnCadastrar.BackColor = Color.DarkOrange;
+            BtnReativar.BackColor = Color.Silver;
+            if (_userLogado.NivelAcesso != 1)
+            {
+                BtnReativar.Visible = false;
+            }
+
 
         }
 
@@ -177,6 +200,17 @@ namespace Escola_POO_BASE.Telas
                 CBAtivo.Checked = _professorSelecionado.Ativo;
                 BtnCadastrar.Enabled = false;
                 BtnAlterar.Enabled = true;
+
+                if (_professorSelecionado.Ativo == false)
+                {
+                    BtnReativar.BackColor = Color.DarkOrange;
+                    BtnReativar.Enabled = true;
+                }
+                else if (_professorSelecionado.Ativo == true)
+                {
+                    BtnReativar.BackColor = Color.Silver;
+                    BtnReativar.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -209,17 +243,23 @@ namespace Escola_POO_BASE.Telas
         {
             try
             {
-                DialogResult dr = MessageBox.Show($"Você deseja remover o {_professorSelecionado.Nome}?"
-                                , "Remover Aluno"
-                                , MessageBoxButtons.YesNo
-                                , MessageBoxIcon.Question);
-
-                if (dr == DialogResult.Yes)
+                if (_professorSelecionado.Ativo == true)
                 {
-                    _professorSelecionado.Ativo = false;
-                    _professorSelecionado.Deletar(_professores);
-                    CarregaDgvUsuarios();
-                    LimparCampos();
+                    if (_userLogado.NivelAcesso == 1)
+                    {
+                        DialogResult dr = MessageBox.Show($"Você deseja remover o {_professorSelecionado.Nome}?"
+                                   , "Remover Aluno"
+                                   , MessageBoxButtons.YesNo
+                                   , MessageBoxIcon.Question);
+
+                        if (dr == DialogResult.Yes)
+                        {
+                            _professorSelecionado.Ativo = false;
+                            _professorSelecionado.Deletar(_professores);
+                            CarregaDgvUsuarios();
+                            LimparCampos();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -261,6 +301,28 @@ namespace Escola_POO_BASE.Telas
             BtnBuscar.PerformClick();
         }
 
-       
+        private void BtnReativar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dr = MessageBox.Show($"Você deseja reativar o {_professorSelecionado.Nome}?"
+                                , "Reativar Aluno"
+                                , MessageBoxButtons.YesNo
+                                , MessageBoxIcon.Question);
+
+                if (dr == DialogResult.Yes)
+                {
+                    _professorSelecionado.Ativo = true;
+                    _professorSelecionado.Reativar(_professores);
+                    CarregaDgvUsuarios();
+                    LimparCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

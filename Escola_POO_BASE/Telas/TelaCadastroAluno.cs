@@ -73,20 +73,32 @@ namespace Escola_POO_BASE.Telas
         private void CarregaDgvUsuarios(List<Aluno> alunos = null)
         {
             DgvUsuarios.Rows.Clear();            
-
-            foreach (Aluno aluno in alunos == null ? _alunos : alunos)
-            {                
-                DgvUsuarios.Rows.Add(aluno.Id, aluno.Nome, aluno.DtNascimento.ToString("dd/MM/yyyy"), aluno.DtMatricula, aluno.Email, aluno.Ativo);
-
-                if(_userLogado.NivelAcesso == 1)
+            
+            if (_userLogado.NivelAcesso != 1)
+            {
+                foreach (Aluno aluno in alunos == null ? _alunos : alunos)
                 {
+                    if(aluno.Ativo == true)
+                    {
+                        DgvUsuarios.Rows.Add(aluno.Id, aluno.Nome, aluno.DtNascimento.ToString("dd/MM/yyyy"), aluno.DtMatricula, aluno.Email);
+                        BtnReativar.Visible = false;
+                    }                                         
+                }
+            }
+            else
+            {
+                foreach (Aluno aluno in alunos == null ? _alunos : alunos)
+                {
+                    DgvUsuarios.Rows.Add(aluno.Id, aluno.Nome, aluno.DtNascimento.ToString("dd/MM/yyyy"), aluno.DtMatricula, aluno.Email, aluno.Ativo);
+
                     if (!aluno.Ativo)
                     {
                         DgvUsuarios.Rows[DgvUsuarios.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightCoral;
                     }
+
                 }
             }
-           
+
         }
 
         private void LimparCampos()
@@ -101,12 +113,16 @@ namespace Escola_POO_BASE.Telas
             DgvUsuarios.ClearSelection();
             BtnCadastrar.Enabled = true;
             BtnAlterar.Enabled = false;
-            CbbBuscar.SelectedIndex = 0;               
+            BtnReativar.Enabled = false;
+            CbbBuscar.SelectedIndex = 0;
+            BtnAlterar.BackColor = Color.Silver;
+            BtnCadastrar.BackColor = Color.DarkOrange;
+            BtnReativar.BackColor = Color.Silver;
             if (_userLogado.NivelAcesso != 1)
             {
                 BtnReativar.Visible = false;
             }
-
+            
         }
         
         private void BtnCadastrar_Click(object sender, EventArgs e)
@@ -173,7 +189,7 @@ namespace Escola_POO_BASE.Telas
              
             try
             {               
-                _alunoSelecionado = _alunos.Find(a => a.Id == (int)DgvUsuarios.SelectedRows[0].Cells[0].Value);
+                _alunoSelecionado = _alunos.Find(a => a.Id == (int)DgvUsuarios.SelectedRows[0].Cells[0].Value);                
 
                 LblId.Text = _alunoSelecionado.Id.ToString();
                 TxtNome.Text = _alunoSelecionado.Nome.ToString();
@@ -183,6 +199,19 @@ namespace Escola_POO_BASE.Telas
                 CBAtivo.Checked = _alunoSelecionado.Ativo;
                 BtnCadastrar.Enabled = false;
                 BtnAlterar.Enabled = true;
+                BtnAlterar.BackColor = Color.DarkOrange;
+                BtnCadastrar.BackColor = Color.Silver;
+
+                if (_alunoSelecionado.Ativo == false)
+                {
+                    BtnReativar.BackColor = Color.DarkOrange;
+                    BtnReativar.Enabled = true;
+                }
+                else if (_alunoSelecionado.Ativo == true)
+                {
+                    BtnReativar.BackColor = Color.Silver;
+                    BtnReativar.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
@@ -215,19 +244,22 @@ namespace Escola_POO_BASE.Telas
         {
             try
             {
-               if(_userLogado.NivelAcesso == 1)
+               if(_alunoSelecionado.Ativo == true)
                {
-                    DialogResult dr = MessageBox.Show($"Você deseja remover o {_alunoSelecionado.Nome}?"
-                               , "Remover Aluno"
-                               , MessageBoxButtons.YesNo
-                               , MessageBoxIcon.Question);
-
-                    if (dr == DialogResult.Yes)
+                    if (_userLogado.NivelAcesso == 1)
                     {
-                        _alunoSelecionado.Ativo = false;
-                        _alunoSelecionado.Deletar(_alunos);
-                        CarregaDgvUsuarios();
-                        LimparCampos();
+                        DialogResult dr = MessageBox.Show($"Você deseja remover o {_alunoSelecionado.Nome}?"
+                                   , "Remover Aluno"
+                                   , MessageBoxButtons.YesNo
+                                   , MessageBoxIcon.Question);
+
+                        if (dr == DialogResult.Yes)
+                        {
+                            _alunoSelecionado.Ativo = false;
+                            _alunoSelecionado.Deletar(_alunos);
+                            CarregaDgvUsuarios();
+                            LimparCampos();
+                        }
                     }
                }
                 
